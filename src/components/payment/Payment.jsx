@@ -61,7 +61,7 @@ function Payment() {
     };
 
     try {
-      const res = await axios.post('http://localhost:8000/order', data);
+      const res = await axios.post('https://satyalok-payment-gateway-backend.onrender.com/order', data);
       console.log(res.data);
       if (res.data.success === true) {
         window.location.href = res.data.data.instrumentResponse.redirectInfo.url;
