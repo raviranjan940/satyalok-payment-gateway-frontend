@@ -1,6 +1,8 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import axios from "axios";
 import "../../App.css";
+
+const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
 
 function Payment() {
     const [formData, setFormData] = useState({
@@ -62,7 +64,7 @@ function Payment() {
 
         try {
             const res = await axios.post(
-                "http://localhost:8000/order",
+                `${BACKEND_URL}/order`,
                 data
             );
             console.log(res.data);
