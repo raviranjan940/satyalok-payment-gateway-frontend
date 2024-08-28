@@ -62,7 +62,7 @@ function Payment() {
 
         try {
             const res = await axios.post(
-                "https://payments.satyalok.in/order",
+                "http://localhost:8000/order",
                 data
             );
             console.log(res.data);
