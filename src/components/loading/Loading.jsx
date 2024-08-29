@@ -60,14 +60,14 @@ function Loading() {
 
     return (
         <div className="text-center">
-            <Lottie options={defaultOptions} height={150} width={150} />
+            <Lottie options={defaultOptions} height={100} width={100} />
 
-            <p className="text-black text-lg mt-4">
+            <p className="text-black text-md">
                 {message}
-                {dots}
+                {/* {dots} */}
             </p>
 
-            <p className="text-xs mt-5 font-light">
+            <p className="text-xs mt-1 font-light">
                 Please do not refresh the page or go back.
             </p>
         </div>
