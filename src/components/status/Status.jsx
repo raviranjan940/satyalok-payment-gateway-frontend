@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Success from "../success/Success";
 import Failure from "../failure/Failure";
+import Loading from "../loading/Loading";
 
 const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
 
@@ -35,7 +36,7 @@ function Status() {
     if (loading) {
         return (
             <div className="flex justify-center items-center h-screen text-lg font-semibold">
-                Loading...
+                <Loading />
             </div>
         );
     }
