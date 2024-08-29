@@ -122,8 +122,8 @@ function Success({
                                         paymentInstrument[
                                             TransactionNumber[
                                                 paymentInstrument.type
-                                            ]?.field?.replace("_", " ")
-                                        ]
+                                            ]?.field
+                                        ]?.replace("_", " ")
                                     }
                                 </p>
                             </div>
