@@ -62,6 +62,8 @@ function Payment() {
             transactionId: "T" + Date.now(),
         };
 
+        console.log("Data:", data);
+
         try {
             const res = await axios.post(
                 `${BACKEND_URL}/order`,
