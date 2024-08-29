@@ -20,7 +20,7 @@ function Payment() {
     const [errors, setErrors] = useState({});
     const [taxExemption, setTaxExemption] = useState(false);
 
-    const [loading, setLoading] = useState(true);
+    const [loading, setLoading] = useState(false);
 
     const fieldsConfig = [
         {
