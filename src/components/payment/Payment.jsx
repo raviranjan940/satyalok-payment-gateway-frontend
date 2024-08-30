@@ -189,7 +189,7 @@ function Payment() {
                             </h1>
                             <p className="text-gray-600 mb-8 max-w-2xl text-xs md:text-sm lg:text-base">
                                 Your small contribution can make a big
-                                difference in someone&aspos;s life. Donate now
+                                difference in someone&apos;s life. Donate now
                                 and help us in providing education to the
                                 underprivileged children. Your donation will be
                                 used for the welfare of the society.
