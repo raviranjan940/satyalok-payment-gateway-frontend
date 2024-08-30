@@ -1,18 +1,10 @@
-
 import PropTypes from "prop-types";
 import logo from "../../assets/satyalok.png";
 
-function Success({
-    amount,
-    merchantTransactionId,
-    transactionId,
-    paymentInstrument,
-    message,
-}) {
+function Success({ amount, merchantTransactionId, transactionId, paymentInstrument, message }) {
     const formatAmount = (amount) => {
         return amount
             .toFixed(2)
-            .toString()
             .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     };
 
@@ -21,13 +13,13 @@ function Success({
         const dateTimePart = input.slice(1, 15); // Skip the 'T' and take 14 characters
 
         // Parse the date-time part into components
-        const year = parseInt("20" + dateTimePart.slice(0, 2)); // Assuming the year is 20YY
+        const year = parseInt("20" + dateTimePart.slice(0, 2), 10); // Assuming the year is 20YY
         const month = dateTimePart.slice(2, 4);
         const day = dateTimePart.slice(4, 6);
         const hour = dateTimePart.slice(6, 8);
         const minute = dateTimePart.slice(8, 10);
 
-        // Return the formatted string in the format "YYYY-MM-DD HH:MM:SS"
+        // Return the formatted string in the format "DD-MM-YYYY HH:MM"
         return `${day}-${month}-${year} ${hour}:${minute}`;
     };
 
@@ -36,7 +28,6 @@ function Success({
             label: "UTR Number",
             field: "utr",
         },
-
         CARD: {
             label: "Card Type",
             field: "cardType",
@@ -46,10 +37,10 @@ function Success({
     return (
         <div className="max-w-lg mx-auto flex flex-col justify-center items-center print:text-black">
             <div className="relative bg-gradient-to-br from-gray-900 via-gray-950 to-gray-900 p-8 rounded-3xl overflow-hidden">
-                <i className="absolute -top- w-full -m-8 h-52 bg-gradient-to-b from-blue-500 via-black/40 to-transparent  opacity-50 z-0"></i>
+                <i className="absolute -top- w-full -m-8 h-52 bg-gradient-to-b from-blue-500 via-black/40 to-transparent opacity-50 z-0"></i>
 
-                {/* reflection effect sun */}
-                <i className="absolute bottom-8 right-0 -m-8 w-32 h-32 rounded-full bg-gradient-to-b from-yellow-500 via-yellow-500/40 to-transparent  opacity-50 z-0"></i>
+                {/* Reflection effect sun */}
+                <i className="absolute bottom-8 right-0 -m-8 w-32 h-32 rounded-full bg-gradient-to-b from-yellow-500 via-yellow-500/40 to-transparent opacity-50 z-0"></i>
 
                 <div className="relative">
                     <div className="text-center w-14 h-14 m-auto bg-green-500/10 rounded-full flex justify-center items-center">
@@ -85,9 +76,7 @@ function Success({
                         </div>
 
                         <div className="md:border px-3 py-2 border-gray-700">
-                            <p className="text-sm text-gray-400">
-                                Payment Time
-                            </p>
+                            <p className="text-sm text-gray-400">Payment Time</p>
                             <p className="text-sm font-mono">
                                 {convertToTimestamp(transactionId)}
                             </p>
@@ -115,7 +104,7 @@ function Success({
                                     {
                                         TransactionNumber[
                                             paymentInstrument.type
-                                        ]?.label
+                                        ].label
                                     }
                                 </p>
                                 <p className="text-sm font-mono">
@@ -123,9 +112,9 @@ function Success({
                                         paymentInstrument[
                                             TransactionNumber[
                                                 paymentInstrument.type
-                                            ]?.field
-                                        ]?.replace("_", " ")
-                                    }
+                                            ].field
+                                        ]
+                                    }?.replace("_", " ")
                                 </p>
                             </div>
                         )}
@@ -134,7 +123,7 @@ function Success({
                     <div className="my-8">
                         <img
                             src={logo}
-                            alt="person"
+                            alt="Satyalok logo"
                             className="max-w-48 -mb-3"
                         />
 
@@ -183,32 +172,18 @@ function Success({
             </div>
         </div>
     );
-import React from 'react';
-
-function Success() {
-  return (
-    <div className="flex flex-col items-center justify-center h-screen bg-teal-50 text-teal-800">
-      {/* Success Page */}
-      <h1 className="text-4xl font-bold mb-4">Payment Successful!</h1>
-      <p className="text-lg text-center mb-8 max-w-lg">
-        Thank you for your payment. Your transaction was completed successfully.
-      </p>
-      <button 
-        className="px-6 py-3 bg-teal-600 text-white rounded-lg hover:bg-teal-700 transition"
-        onClick={() => window.location.href = '/'}
-      >
-        Go to Home
-      </button>
-    </div>
-  );
 }
-
-export default Success;
 
 Success.propTypes = {
     amount: PropTypes.number.isRequired,
     merchantTransactionId: PropTypes.string.isRequired,
     transactionId: PropTypes.string.isRequired,
-    paymentInstrument: PropTypes.object.isRequired,
+    paymentInstrument: PropTypes.shape({
+        type: PropTypes.string.isRequired,
+        utr: PropTypes.string,
+        cardType: PropTypes.string,
+    }).isRequired,
     message: PropTypes.string.isRequired,
 };
+
+export default Success;
