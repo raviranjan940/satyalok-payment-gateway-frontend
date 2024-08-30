@@ -1,11 +1,15 @@
 import PropTypes from "prop-types";
 import logo from "../../assets/satyalok.png";
 
-function Success({ amount, merchantTransactionId, transactionId, paymentInstrument, message }) {
+function Success({
+    amount,
+    merchantTransactionId,
+    transactionId,
+    paymentInstrument,
+    message,
+}) {
     const formatAmount = (amount) => {
-        return amount
-            .toFixed(2)
-            .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        return amount.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     };
 
     const convertToTimestamp = (input) => {
@@ -76,7 +80,9 @@ function Success({ amount, merchantTransactionId, transactionId, paymentInstrume
                         </div>
 
                         <div className="md:border px-3 py-2 border-gray-700">
-                            <p className="text-sm text-gray-400">Payment Time</p>
+                            <p className="text-sm text-gray-400">
+                                Payment Time
+                            </p>
                             <p className="text-sm font-mono">
                                 {convertToTimestamp(transactionId)}
                             </p>
@@ -108,13 +114,11 @@ function Success({ amount, merchantTransactionId, transactionId, paymentInstrume
                                     }
                                 </p>
                                 <p className="text-sm font-mono">
-                                    {
-                                        paymentInstrument[
-                                            TransactionNumber[
-                                                paymentInstrument.type
-                                            ].field
-                                        ]
-                                    }?.replace("_", " ")
+                                    {paymentInstrument[
+                                        TransactionNumber[
+                                            paymentInstrument.type
+                                        ]?.field
+                                    ].replace("_", " ")}
                                 </p>
                             </div>
                         )}
