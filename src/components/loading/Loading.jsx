@@ -70,6 +70,17 @@ function Loading() {
             <p className="text-xs mt-1 font-light">
                 Please do not refresh the page or go back.
             </p>
+
+            <div className="mt-8 relative max-w-xs lg:max-w-xl text-xs lg:text-sm text-justify flex gap-3 items-center bg-green-100/60 p-3 rounded-lg font-sans">
+                <div className="text-xs rounded-full min-w-6 min-h-6 flex justify-center items-center absolute -top-2.5 -left-2.5 bg-green-600">
+                    <i className="fas fa-leaf text-white"></i>
+                </div>
+                <p className="leading-tight font-sans">
+                    As a non-profit, our server spins down to <b>save costs and cut
+                    our carbon footprint</b>, letting us <b>focus more on our mission</b>.
+                    This may mean slower load times. Thanks for your patience!
+                </p>
+            </div>
         </div>
     );
 }
