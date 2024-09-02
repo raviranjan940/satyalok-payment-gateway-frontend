@@ -1,36 +1,51 @@
 import otherFail from "../../assets/brokenCard.png";
 import upiFail from "../../assets/sad.png";
-import PropTypes from "prop-types";
+
+import propTypes from "prop-types";
 
 function Failure({ data }) {
-    const type = data?.code === "PAYMENT_ERROR" ? "UPI" : "Other";
-
-    if (type === "UPI") {
-        return (
-            <div className="flex flex-col items-center justify-center text-red-800">
-                <img src={upiFail} alt="Failed" className="h-52" />
-                <p className="text-lg font-semibold mt-4">{data.message}</p>
-                <p className="text-sm text-center mt-2">
-                    {data.data.responseCodeDescription}
-                </p>
-
-                <button
-                    onClick={() => (window.location.href = "/")}
-                    className="bg-red-500 text-white px-4 py-2 mt-4 rounded-md"
-                >
-                    Retry Payment
-                </button>
-            </div>
-        );
-    }
+    const { code, message, data: paymentData } = data;
+    const type = code === "PAYMENT_ERROR" ? "UPI" : "Other";
+    const paymentType = paymentData.paymentInstrument?.type || "Unknown";
+    const amount = (paymentData.amount / 100).toFixed(2); // Assuming amount is in paise/cents
+    const merchantTxnId = paymentData.merchantTransactionId;
 
     return (
         <div className="flex flex-col items-center justify-center text-red-800">
-            <img src={otherFail} alt="Failed" className="h-52" />
-            <p className="text-lg font-semibold mt-4">
-                {data.code.replace("_", " ")}
-            </p>
-            <p className="text-sm text-center mt-2">{data.message}</p>
+            <img
+                src={type === "UPI" ? upiFail : otherFail}
+                alt="Payment Failed"
+                className="h-52"
+            />
+            <h2 className="text-2xl font-semibold mt-4">Payment Failure</h2>
+            <p className="text-lg font-semibold mt-2">{message}</p>
+
+            <div className="mt-4 w-full px-4">
+                <div className="bg-red-100 p-4 rounded-md shadow-md">
+                    <p className="text-sm">
+                        <strong>Transaction ID:</strong> {merchantTxnId}
+                    </p>
+                    <p className="text-sm">
+                        <strong>Payment Type:</strong> {paymentType}
+                    </p>
+                    <p className="text-sm">
+                        <strong>Amount:</strong> ₹{amount}
+                    </p>
+                    {paymentData.responseCodeDescription && (
+                        <p className="text-sm mt-2">
+                            <strong>Error:</strong>{" "}
+                            {paymentData.responseCodeDescription}
+                        </p>
+                    )}
+                </div>
+            </div>
+
+            <button
+                onClick={() => (window.location.href = "/")}
+                className="bg-red-500 text-white px-4 py-2 mt-6 rounded-md"
+            >
+                Retry Payment
+            </button>
         </div>
     );
 }
@@ -38,11 +53,16 @@ function Failure({ data }) {
 export default Failure;
 
 Failure.propTypes = {
-    data: PropTypes.shape({
-        code: PropTypes.string.isRequired,
-        message: PropTypes.string.isRequired,
-        data: PropTypes.shape({
-            responseCodeDescription: PropTypes.string,
-        }),
+    data: propTypes.shape({
+        code: propTypes.string.isRequired,
+        message: propTypes.string.isRequired,
+        data: propTypes.shape({
+            merchantTransactionId: propTypes.string.isRequired,
+            amount: propTypes.number.isRequired,
+            paymentInstrument: propTypes.shape({
+                type: propTypes.string,
+            }),
+            responseCodeDescription: propTypes.string,
+        }).isRequired,
     }).isRequired,
 };
