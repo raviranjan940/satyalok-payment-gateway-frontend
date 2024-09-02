@@ -14,9 +14,10 @@ function Failure({ data }) {
     return (
         <div className="flex flex-col items-center justify-center text-red-800">
             <img src={failImg} alt="Payment Failed" className="h-52" />
-            <h2 className="text-2xl font-semibold mt-4">Payment Failure</h2>
-            <p className="text-lg font-semibold mt-2">{message}</p>
-
+            <h2 className="text-2xl font-semibold mt-4">{message}</h2>
+            <p className="text-sm mt-2">
+                Your payment was unsuccessful. Please try again. If the problem persists, contact our support team.
+            </p>
             <div className="mt-4 w-full px-4">
                 <div className="bg-red-100 p-4 rounded-md shadow-md">
                     <p className="text-sm">
