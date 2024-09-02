@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 
+import propTypes from "prop-types";
+
 function ErrorCard({ message }) {
     const [isVisible, setIsVisible] = useState(true);
 
@@ -41,3 +43,6 @@ function ErrorCard({ message }) {
 
 export default ErrorCard;
 
+ErrorCard.propTypes = {
+    message: propTypes.string,
+};
