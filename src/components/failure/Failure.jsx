@@ -9,6 +9,9 @@ function Failure({ data }) {
     const paymentType = paymentData.paymentInstrument?.type || "Unknown";
     const amount = (paymentData.amount / 100).toFixed(2); // Assuming amount is in paise/cents
     const merchantTxnId = paymentData.merchantTransactionId;
+    const utr = paymentData.paymentInstrument?.utr;
+    const accountType = paymentData.paymentInstrument?.accountType || "Unknown";
+    const responseCode = paymentData.responseCode;
 
     return (
         <div className="flex flex-col items-center justify-center text-red-800">
@@ -31,10 +34,22 @@ function Failure({ data }) {
                     <p className="text-sm">
                         <strong>Amount:</strong> ₹{amount}
                     </p>
+                    <p className="text-sm">
+                        <strong>Account Type:</strong> {accountType}
+                    </p>
+                    {utr && (
+                        <p className="text-sm">
+                            <strong>UTR:</strong> {utr}
+                        </p>
+                    )}
+                    {responseCode && (
+                        <p className="text-sm mt-2">
+                            <strong>Response Code:</strong> {responseCode}
+                        </p>
+                    )}
                     {paymentData.responseCodeDescription && (
                         <p className="text-sm mt-2">
-                            <strong>Error:</strong>{" "}
-                            {paymentData.responseCodeDescription}
+                            <strong>Error:</strong> {paymentData.responseCodeDescription}
                         </p>
                     )}
                 </div>
@@ -61,7 +76,10 @@ Failure.propTypes = {
             amount: propTypes.number.isRequired,
             paymentInstrument: propTypes.shape({
                 type: propTypes.string,
+                utr: propTypes.string,
+                accountType: propTypes.string,
             }),
+            responseCode: propTypes.string,
             responseCodeDescription: propTypes.string,
         }).isRequired,
     }).isRequired,
