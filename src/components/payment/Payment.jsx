@@ -5,6 +5,7 @@ import bgImage from "../../assets/images/image_3.png";
 import logo from "../../assets/logo_white.png";
 import Header from "../header/Header";
 import Loading from "../loading/Loading";
+import ErrorCard from "../error/ErrorCard";
 
 const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
 
@@ -19,6 +20,7 @@ function Payment() {
 
     const [errors, setErrors] = useState({});
     const [taxExemption, setTaxExemption] = useState(false);
+    const [errorMessage, setErrorMessage] = useState("");
 
     const [loading, setLoading] = useState(false);
 
@@ -99,7 +101,7 @@ function Payment() {
         });
     };
 
-    const handleClick = async () => {
+    const handleFormSubmit = async () => {
         const validationErrors = validate();
         if (Object.keys(validationErrors).length > 0) {
             setErrors(validationErrors);
@@ -114,12 +116,14 @@ function Payment() {
                     res.data.data.instrumentResponse.redirectInfo.url;
             } else {
                 console.error("Failed to process payment:", res.data.message);
-                // Handle failure response here
+                setErrorMessage(
+                    res.data.message || "Failed to process payment."
+                );
                 setLoading(false);
             }
         } catch (error) {
             console.error("Error occurred:", error);
-            // Handle error here
+            setErrorMessage("An error occurred while processing the payment.");
             setLoading(false);
         }
     };
@@ -306,7 +310,7 @@ function Payment() {
 
                                 <button
                                     type="button"
-                                    onClick={handleClick}
+                                    onClick={handleFormSubmit}
                                     className="w-full max-w-44 bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600"
                                 >
                                     <i className="fas fa-hand-holding-heart mr-2"></i>
@@ -375,6 +379,8 @@ function Payment() {
                     <Loading />
                 </div>
             )}
+
+            {errorMessage && <ErrorCard message={errorMessage} setMessage={setErrorMessage} />}
         </div>
     );
 }
