@@ -369,6 +369,14 @@ function Payment() {
                                     </a>
                                 </li>
                             </ul>
+
+                            <p className="text-xs md:text-sm text-gray-500 mt-2">
+                                &copy; 2024 Satyalok. All rights reserved.
+                                <span className="text-xs font-thin ml-2">
+                                    VER
+                                    {import.meta.env.VITE_VERCEL_GIT_COMMIT_SHA}
+                                </span>
+                            </p>
                         </footer>
                     </div>
                 </div>
@@ -380,7 +388,12 @@ function Payment() {
                 </div>
             )}
 
-            {errorMessage && <ErrorCard message={errorMessage} setMessage={setErrorMessage} />}
+            {errorMessage && (
+                <ErrorCard
+                    message={errorMessage}
+                    setMessage={setErrorMessage}
+                />
+            )}
         </div>
     );
 }
