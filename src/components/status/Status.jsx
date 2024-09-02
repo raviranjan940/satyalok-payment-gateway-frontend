@@ -22,7 +22,7 @@ function Status() {
                 return res.json();
             })
             .then((data) => {
-                console.log(data);
+                // console.log(data);
                 setPaymentData(data);
                 setLoading(false);
             })
@@ -54,7 +54,6 @@ function Status() {
             {paymentData?.success === true && (
                 <Success {...paymentData.data} message={paymentData.message} />
             )}
-            {/* <Success {...paymentData.data} message={paymentData.message} /> */}
 
             {paymentData?.success === false && <Failure data={paymentData} />}
 
