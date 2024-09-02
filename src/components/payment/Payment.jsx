@@ -372,11 +372,11 @@ function Payment() {
 
                             <p className="text-xs md:text-sm text-gray-500 mt-2">
                                 &copy; 2024 Satyalok. All rights reserved.
-                                <span className="text-xs font-thin ml-2">
+                                <span className="text-xs font-extralight ml-2 text-black">
                                     v
                                     {import.meta.env.VITE_VERCEL_GIT_COMMIT_SHA?.slice(
                                         -3
-                                    )}
+                                    ) || "local"}
                                 </span>
                             </p>
                         </footer>
