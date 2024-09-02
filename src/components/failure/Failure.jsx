@@ -1,11 +1,9 @@
-import otherFail from "../../assets/brokenCard.png";
-import upiFail from "../../assets/sad.png";
+import failImg from "../../assets/brokenCard.png";
 
 import propTypes from "prop-types";
 
 function Failure({ data }) {
-    const { code, message, data: paymentData } = data;
-    const type = code === "PAYMENT_ERROR" ? "UPI" : "Other";
+    const { message, data: paymentData } = data;
     const paymentType = paymentData.paymentInstrument?.type || "Unknown";
     const amount = (paymentData.amount / 100).toFixed(2); // Assuming amount is in paise/cents
     const merchantTxnId = paymentData.merchantTransactionId;
@@ -15,11 +13,7 @@ function Failure({ data }) {
 
     return (
         <div className="flex flex-col items-center justify-center text-red-800">
-            <img
-                src={type === "UPI" ? upiFail : otherFail}
-                alt="Payment Failed"
-                className="h-52"
-            />
+            <img src={failImg} alt="Payment Failed" className="h-52" />
             <h2 className="text-2xl font-semibold mt-4">Payment Failure</h2>
             <p className="text-lg font-semibold mt-2">{message}</p>
 
@@ -49,7 +43,8 @@ function Failure({ data }) {
                     )}
                     {paymentData.responseCodeDescription && (
                         <p className="text-sm mt-2">
-                            <strong>Error:</strong> {paymentData.responseCodeDescription}
+                            <strong>Error:</strong>{" "}
+                            {paymentData.responseCodeDescription}
                         </p>
                     )}
                 </div>
