@@ -51,10 +51,31 @@ function Status() {
 
     return (
         <div className="relative min-h-screen bg-slate-50 text-white flex flex-col items-center justify-center p-6">
-            {paymentData?.success ? (
+            {paymentData?.success === true && (
                 <Success {...paymentData.data} message={paymentData.message} />
-            ) : (
-                <Failure />
+            )}
+            {/* <Success {...paymentData.data} message={paymentData.message} /> */}
+
+            {paymentData?.success === false && <Failure data={paymentData} />}
+
+            {/* if no data is returned, show a generic error message */}
+
+            {paymentData?.success === undefined && (
+                <div className="flex flex-col items-center justify-center text-red-800">
+                    <h1 className="text-4xl font-bold mb-4">
+                        No payment data available
+                    </h1>
+                    <p className="text-lg text-center mb-8 max-w-lg">
+                        Make sure you have the correct transaction ID or try to
+                        make a new payment.
+                    </p>
+                    <button
+                        className="px-6 py-3 bg-red-600 text-white rounded-lg hover:bg-red-700 transition"
+                        onClick={() => (window.location.href = "/")}
+                    >
+                        Retry Payment
+                    </button>
+                </div>
             )}
         </div>
     );

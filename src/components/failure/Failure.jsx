@@ -1,22 +1,48 @@
-import React from "react";
+import otherFail from "../../assets/brokenCard.png";
+import upiFail from "../../assets/sad.png";
+import PropTypes from "prop-types";
 
-function Failure() {
+function Failure({ data }) {
+    const type = data?.code === "PAYMENT_ERROR" ? "UPI" : "Other";
+
+    if (type === "UPI") {
+        return (
+            <div className="flex flex-col items-center justify-center text-red-800">
+                <img src={upiFail} alt="Failed" className="h-52" />
+                <p className="text-lg font-semibold mt-4">{data.message}</p>
+                <p className="text-sm text-center mt-2">
+                    {data.data.responseCodeDescription}
+                </p>
+
+                <button
+                    onClick={() => (window.location.href = "/")}
+                    className="bg-red-500 text-white px-4 py-2 mt-4 rounded-md"
+                >
+                    Retry Payment
+                </button>
+            </div>
+        );
+    }
+
     return (
         <div className="flex flex-col items-center justify-center text-red-800">
-            <h1 className="text-4xl font-bold mb-4">
-              Oops! There was an error processing your payment.
-            </h1>
-            <p className="text-lg text-center mb-8 max-w-lg">
-                No payment data available for this transaction.
+            <img src={otherFail} alt="Failed" className="h-52" />
+            <p className="text-lg font-semibold mt-4">
+                {data.code.replace("_", " ")}
             </p>
-            <button
-                className="px-6 py-3 bg-red-600 text-white rounded-lg hover:bg-red-700 transition"
-                onClick={() => (window.location.href = "/retry")}
-            >
-                Retry Payment
-            </button>
+            <p className="text-sm text-center mt-2">{data.message}</p>
         </div>
     );
 }
 
 export default Failure;
+
+Failure.propTypes = {
+    data: PropTypes.shape({
+        code: PropTypes.string.isRequired,
+        message: PropTypes.string.isRequired,
+        data: PropTypes.shape({
+            responseCodeDescription: PropTypes.string,
+        }),
+    }).isRequired,
+};
