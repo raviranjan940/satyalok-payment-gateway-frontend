@@ -44,7 +44,7 @@ function Loading() {
         }, 5000);
 
         return () => clearInterval(interval);
-    }, []);
+    });
 
     useEffect(() => {
         const interval = setInterval(() => {
@@ -76,9 +76,10 @@ function Loading() {
                     <i className="fas fa-leaf text-white"></i>
                 </div>
                 <p className="leading-tight font-sans">
-                    As a non-profit, our server spins down to <b>save costs and cut
-                    our carbon footprint</b>, letting us <b>focus more on our mission</b>.
-                    This may mean slower load times. Thanks for your patience!
+                    As a non-profit, our server spins down to{" "}
+                    <b>save costs and cut our carbon footprint</b>, letting us{" "}
+                    <b>focus more on our mission</b>. This may mean slower load
+                    times. Thanks for your patience!
                 </p>
             </div>
         </div>
