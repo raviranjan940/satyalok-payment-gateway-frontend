@@ -30,13 +30,13 @@ function ErrorCard({ message, setMessage }) {
         <div
             className={`fixed bottom-4 transition-transform duration-500 ease-in-out p-4 bg-red-600 text-white rounded-md shadow-lg flex items-center justify-between z-50 ${
                 window.innerWidth <= 768
-                    ? "left-1/2 transform -translate-x-1/2"
+                    ? "left-1/2 transform -translate-x-1/2 w-[80%]"
                     : "right-4"
             }`}
         >
             <div className="mr-4">{message}</div>
             <button
-                className="text-2xl leading-none focus:outline-none"
+                className="text-2xl leading-none focus:outline-none cursor-pointer"
                 onClick={handleClose}
             >
                 &times;
