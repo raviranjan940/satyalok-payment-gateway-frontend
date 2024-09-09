@@ -1,1 +1,1 @@
-export const isMaintainanceMode = true;
+export const isMaintainanceMode = false;

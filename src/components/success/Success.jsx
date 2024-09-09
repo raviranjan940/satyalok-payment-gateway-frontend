@@ -61,7 +61,7 @@ function Success({
                         <i className="h-0.5 w-full bg-white/30 mx-2"></i>
                     </div>
 
-                    <div className="my-10">
+                    <div className="my-6">
                         <p className="text-center text-lg font-sans opacity-80">
                             Total Payment
                         </p>
@@ -69,6 +69,21 @@ function Success({
                             <span className="mr-1 font-extrabold">INR</span>
                             {formatAmount(amount / 100)}
                         </h1>
+                    </div>
+
+                    <div className="text-justify text-sm font-sans text-gray-400">
+                        <p className="mb-4">
+                            If you opted for a tax benefit, your certificate is
+                            sent to your email. Please check your inbox. In case
+                            you don&apos;t receive the certificate, please check your
+                            spam folder or contact us at{" "}
+                            <a
+                                href="mailto:info@satyalok.in"
+                                className="underline underline-offset-4"
+                            >
+                                info@satyalok.in
+                            </a>
+                        </p>
                     </div>
 
                     <div className="grid md:grid-cols-2 md:gap-2">
