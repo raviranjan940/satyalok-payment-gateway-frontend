@@ -50,7 +50,7 @@ function Status() {
     }
 
     return (
-        <div className="relative min-h-screen bg-slate-50 text-white flex flex-col items-center justify-center p-6">
+        <div className="relative min-h-screen bg-purple-600 flex flex-col items-center justify-center p-6">
             {paymentData?.success === true && (
                 <Success {...paymentData.data} message={paymentData.message} />
             )}
@@ -60,7 +60,7 @@ function Status() {
             {/* if no data is returned, show a generic error message */}
 
             {paymentData?.success === undefined && (
-                <div className="flex flex-col items-center justify-center text-red-800">
+                <div className="flex flex-col items-center justify-center text-white">
                     <h1 className="text-4xl font-bold mb-4">
                         No payment data available
                     </h1>

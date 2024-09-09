@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import logo from "../../assets/satyalok.png";
+import logo from "../../assets/logo.png";
 
 function Success({
     amount,
@@ -39,9 +39,9 @@ function Success({
     };
 
     return (
-        <div className="max-w-lg mx-auto flex flex-col justify-center items-center print:text-black">
-            <div className="relative bg-gradient-to-br from-gray-900 via-gray-950 to-gray-900 p-8 rounded-3xl overflow-hidden">
-                <i className="absolute -top- w-full -m-8 h-52 bg-gradient-to-b from-blue-500 via-black/40 to-transparent opacity-50 z-0"></i>
+        <div className="max-w-lg mx-auto flex flex-col justify-center items-center">
+            <div className="relative bg-white p-8 overflow-hidden drop-shadow-xl print:drop-shadow-none">
+                {/* <i className="absolute -top- w-full -m-8 h-52 bg-gradient-to-b from-blue-500 via-black/40 to-transparent opacity-50 z-0"></i> */}
 
                 {/* Reflection effect sun */}
                 <i className="absolute bottom-8 right-0 -m-8 w-32 h-32 rounded-full bg-gradient-to-b from-yellow-500 via-yellow-500/40 to-transparent opacity-50 z-0"></i>
@@ -50,16 +50,12 @@ function Success({
                     <div className="text-center w-14 h-14 m-auto bg-green-500/10 rounded-full flex justify-center items-center">
                         <i className="fas fa-check-circle text-3xl text-green-500"></i>
                     </div>
-                    <h1 className="text-xl font-semibold mt-4 text-center">
+                    <h1 className="text-xl font-semibold mt-4 text-center text-blue-900">
                         Donation Received
                     </h1>
-                    <p className="text-slate-100 text-center mb-4 font-sans">
+                    <p className="text-green-800 font-bold text-center mb-4 font-sans">
                         {message}
                     </p>
-
-                    <div className="flex justify-center items-center my-8">
-                        <i className="h-0.5 w-full bg-white/30 mx-2"></i>
-                    </div>
 
                     <div className="my-6">
                         <p className="text-center text-lg font-sans opacity-80">
@@ -71,12 +67,12 @@ function Success({
                         </h1>
                     </div>
 
-                    <div className="text-justify text-sm font-sans text-gray-400">
+                    <div className="text-justify text-xs font-sans text-black">
                         <p className="mb-4">
                             If you opted for a tax benefit, your certificate is
                             sent to your email. Please check your inbox. In case
-                            you don&apos;t receive the certificate, please check your
-                            spam folder or contact us at{" "}
+                            you don&apos;t receive the certificate, please check
+                            your spam folder or contact us at{" "}
                             <a
                                 href="mailto:info@satyalok.in"
                                 className="underline underline-offset-4"
@@ -88,14 +84,14 @@ function Success({
 
                     <div className="grid md:grid-cols-2 md:gap-2">
                         <div className="md:border px-3 py-2 border-gray-700">
-                            <p className="text-sm text-gray-400">Ref. Number</p>
+                            <p className="text-sm text-blue-900">Ref. Number</p>
                             <p className="text-sm font-mono">
                                 {merchantTransactionId}
                             </p>
                         </div>
 
                         <div className="md:border px-3 py-2 border-gray-700">
-                            <p className="text-sm text-gray-400">
+                            <p className="text-sm text-blue-900">
                                 Payment Time
                             </p>
                             <p className="text-sm font-mono">
@@ -104,14 +100,14 @@ function Success({
                         </div>
 
                         <div className="md:border px-3 py-2 border-gray-700">
-                            <p className="text-sm text-gray-400">
+                            <p className="text-sm text-blue-900">
                                 PhonePe Transaction ID
                             </p>
                             <p className="text-sm font-mono">{transactionId}</p>
                         </div>
 
                         <div className="md:border px-3 py-2 border-gray-700">
-                            <p className="text-sm text-gray-400">
+                            <p className="text-sm text-blue-900">
                                 Payment Method
                             </p>
                             <p className="text-sm font-mono">
@@ -121,7 +117,7 @@ function Success({
 
                         {paymentInstrument.type in TransactionNumber && (
                             <div className="md:border px-3 py-2 border-gray-700 md:col-span-2">
-                                <p className="text-sm text-gray-400">
+                                <p className="text-sm text-blue-900">
                                     {
                                         TransactionNumber[
                                             paymentInstrument.type
@@ -143,7 +139,7 @@ function Success({
                         <img
                             src={logo}
                             alt="Satyalok logo"
-                            className="max-w-48 -mb-3"
+                            className="max-w-48"
                         />
 
                         <div>
@@ -164,7 +160,7 @@ function Success({
                 </div>
             </div>
 
-            <div className="mt-8 text-right print:hidden divide-x divide-gray-400 text-black flex text-xs md:text-sm">
+            <div className="mt-8 text-right print:hidden divide-x divide-gray-400 text-white flex text-xs md:text-sm">
                 <button
                     className="px-5 flex flex-col md:flex-row md:gap-1.5 justify-center items-center text-center"
                     onClick={() => window.print()}
