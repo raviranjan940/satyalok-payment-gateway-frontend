@@ -420,11 +420,6 @@ function Payment() {
                                             <i className="fas fa-spinner fa-spin"></i>{" "}
                                         </span>
                                     )}
-                                    <span>
-                                        {serverVersion
-                                            ? serverVersion
-                                            : "local"}
-                                    </span>
                                 </span>
                             </p>
                         </footer>
