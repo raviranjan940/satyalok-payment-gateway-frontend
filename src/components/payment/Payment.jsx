@@ -35,7 +35,7 @@ function Payment() {
                 const res = await axios.get(`${BACKEND_URL}/`);
                 if (res.data.alive) {
                     setServerStatus("alive");
-                    setServerVersion(res.data.commitVersion);
+                    setServerVersion(res.data.commitVersion.slice(-3));
                 }
             } catch (error) {
                 console.error("Failed to wake up backend server:", error);
@@ -420,7 +420,7 @@ function Payment() {
                                             <i className="fas fa-spinner fa-spin"></i>{" "}
                                         </span>
                                     )}
-                                    <span className="text-xs text-white block">
+                                    <span>
                                         {serverVersion
                                             ? serverVersion
                                             : "local"}
