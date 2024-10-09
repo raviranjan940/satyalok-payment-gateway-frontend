@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 import Field from "./Field"; // Import the Field component
 import bgImage from "../../assets/images/image_3.png";
@@ -23,8 +23,28 @@ function Payment() {
     const [errors, setErrors] = useState({});
     const [taxExemption, setTaxExemption] = useState(false);
     const [errorMessage, setErrorMessage] = useState("");
+    const [serverStatus, setServerStatus] = useState("checking");
+    const [serverVersion, setServerVersion] = useState("");
 
     const [loading, setLoading] = useState(false);
+
+    // useEffect to call the API to wake up the backend server
+    useEffect(() => {
+        const wakeUpBackend = async () => {
+            try {
+                const res = await axios.get(`${BACKEND_URL}/`);
+                if (res.data.alive) {
+                    setServerStatus("alive");
+                    setServerVersion(res.data.commitVersion);
+                }
+            } catch (error) {
+                console.error("Failed to wake up backend server:", error);
+                setServerStatus("error");
+            }
+        };
+
+        wakeUpBackend();
+    }, []);
 
     const fieldsConfig = [
         {
@@ -383,6 +403,28 @@ function Payment() {
                                     {import.meta.env.VITE_VERCEL_GIT_COMMIT_SHA?.slice(
                                         -3
                                     ) || "local"}
+                                    {/*server status:*/}
+                                    {serverStatus === "alive" && (
+                                        <span className="text-green-500 ml-2">
+                                            <i className="fas fa-check-circle"></i>{" "}
+                                            {serverVersion}
+                                        </span>
+                                    )}
+                                    {serverStatus === "error" && (
+                                        <span className="text-red-500 ml-2">
+                                            <i className="fas fa-exclamation-triangle"></i>{" "}
+                                        </span>
+                                    )}
+                                    {serverStatus === "checking" && (
+                                        <span className="text-yellow-500 ml-2">
+                                            <i className="fas fa-spinner fa-spin"></i>{" "}
+                                        </span>
+                                    )}
+                                    <span className="text-xs text-white block">
+                                        {serverVersion
+                                            ? serverVersion
+                                            : "local"}
+                                    </span>
                                 </span>
                             </p>
                         </footer>
