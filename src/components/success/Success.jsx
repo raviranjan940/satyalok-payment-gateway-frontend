@@ -68,14 +68,14 @@ function Success({
                     </div>
 
                     <div className="grid md:grid-cols-2 md:gap-2 my-4">
-                        <div className="md:border px-3 py-2 border-gray-700">
+                        <div className="md:border md:px-3 py-2 border-gray-700">
                             <p className="text-sm text-blue-900">Ref. Number</p>
                             <p className="text-sm font-mono">
                                 {merchantTransactionId}
                             </p>
                         </div>
 
-                        <div className="md:border px-3 py-2 border-gray-700">
+                        <div className="md:border md:px-3 py-2 border-gray-700">
                             <p className="text-sm text-blue-900">
                                 Payment Time
                             </p>
@@ -84,14 +84,14 @@ function Success({
                             </p>
                         </div>
 
-                        <div className="md:border px-3 py-2 border-gray-700">
+                        <div className="md:border md:px-3 py-2 border-gray-700">
                             <p className="text-sm text-blue-900">
                                 PhonePe Transaction ID
                             </p>
                             <p className="text-sm font-mono">{transactionId}</p>
                         </div>
 
-                        <div className="md:border px-3 py-2 border-gray-700">
+                        <div className="md:border md:px-3 py-2 border-gray-700">
                             <p className="text-sm text-blue-900">
                                 Payment Method
                             </p>
@@ -101,7 +101,7 @@ function Success({
                         </div>
 
                         {paymentInstrument.type in TransactionNumber && (
-                            <div className="md:border px-3 py-2 border-gray-700 md:col-span-2">
+                            <div className="md:border md:px-3 py-2 border-gray-700 md:col-span-2">
                                 <p className="text-sm text-blue-900">
                                     {
                                         TransactionNumber[
@@ -120,14 +120,13 @@ function Success({
                         )}
                     </div>
 
-                    <p className="text-justify text-xs text-gray-700 mt-2 border border-gray-700 border-dashed -mx-2 sm:mx-0 p-2">
+                    <p className="text-justify text-xs text-gray-700 border border-gray-700 border-dashed -mx-2 sm:mx-0 p-2">
                         Dear Donor,
                         <br />
-                        thank you for your generous donation. Your small
+                        Thank you for your generous donation. Your small
                         contribution can make a big difference. Your donated
-                        amount will be used for the welfare of underprivileged
-                        children, environmental conservation, and healthcare
-                        services. Thank you for your support ❤️.
+                        amount will be used for the welfare of society. Thank
+                        you for your support ❤️.
                         <br />
                         <br />
                         Regards,
