@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 import logo from "../../assets/logo.png";
 import paymentDoneAnimation from "../../assets/Successfully-Done.gif";
-import receiptBg from "../../assets/receipt-bg-2.gif";
+import receiptBg from "../../assets/receipt-bg.gif";
 
 function Success({
     amount,
@@ -42,71 +42,32 @@ function Success({
 
     return (
         <div className="max-w-lg mx-auto flex flex-col justify-center items-center">
-            <div className="relative bg-white p-8 overflow-hidden drop-shadow-xl print:drop-shadow-none">
-                {/* <i className="absolute -top- w-full -m-8 h-52 bg-gradient-to-b from-blue-500 via-black/40 to-transparent opacity-50 z-0"></i> */}
-
+            <div className="relative bg-white overflow-hidden drop-shadow-xl print:drop-shadow-none">
                 {/* Reflection effect sun */}
-                <i className="absolute bottom-40 right-0 -m-8 w-32 h-32 rounded-full bg-gradient-to-b from-yellow-500 via-yellow-500/40 to-transparent opacity-50 z-0"></i>
+                <i className="absolute bottom-8 right-0 -m-8 w-32 h-32 rounded-full bg-gradient-to-b from-yellow-500 via-yellow-500/40 to-transparent opacity-50 z-0"></i>
 
-                <div className="relative">
-                    <div className="relative flex justify-center items-center -mx-8 -mt-8 h-40 overflow-hidden bg-green-700">
-                        <img
-                            className="absolute overflow-clip w-full object-cover object-top max-h-40 z-0"
-                            src={receiptBg}
-                            alt=""
-                        />
+                <img
+                    className="w-full object-center z-0 m-auto"
+                    src={receiptBg}
+                    alt=""
+                />
 
-                        <div className="z-10 text-white">
-                            <h1 className="text-2xl font-extrabold font-sans text-center">
-                                <span className="mr-1 font-extrabold">INR</span>
-                                {formatAmount(amount / 100)}
-                            </h1>
-                            <p className="text-xl font-extrabold text-center">
-                                Donation Received
-                            </p>
-                        </div>
-                    </div>
-
-                    {/* <div className="my-4 text-center w-14 h-14 m-auto bg-green-500/10 rounded-full flex justify-center items-center">
-                        <i className="fas fa-check-circle text-3xl text-green-500"></i>
-                    </div> */}
-
-                    <img
-                        className="max-w-32 m-auto -mb-10 -mt-4"
-                        src={paymentDoneAnimation}
-                        alt=""
-                    />
-
-                    <p className="font-bold text-center font-sans my-4 text-green-500">
-                        {message}
-                    </p>
-
-                    {/* <div className="my-6">
-                        <p className="text-center text-lg font-sans opacity-80">
-                            Total Payment
-                        </p>
-                        <h1 className="text-2xl font-extrabold font-sans text-center">
+                <div className="relative p-8">
+                    <div className="">
+                        <h1 className="text-2xl font-extrabold font-sans text-center text-green-500">
                             <span className="mr-1 font-extrabold">INR</span>
                             {formatAmount(amount / 100)}
                         </h1>
-                    </div> */}
+                        <p className="text-xl font-semibold text-center text-green-500">
+                            Donation Received
+                        </p>
 
-                    <div className="text-justify text-xs font-sans text-black">
-                        <p className="mb-4">
-                            If you opted for a tax benefit, your certificate is
-                            sent to your email. Please check your inbox. In case
-                            you don&apos;t receive the certificate, please check
-                            your spam folder or contact us at{" "}
-                            <a
-                                href="mailto:info@satyalok.in"
-                                className="underline underline-offset-4"
-                            >
-                                info@satyalok.in
-                            </a>
+                        <p className="font-medium text-center font-sans">
+                            {message}
                         </p>
                     </div>
 
-                    <div className="grid md:grid-cols-2 md:gap-2">
+                    <div className="grid md:grid-cols-2 md:gap-2 my-4">
                         <div className="md:border px-3 py-2 border-gray-700">
                             <p className="text-sm text-blue-900">Ref. Number</p>
                             <p className="text-sm font-mono">
@@ -159,6 +120,21 @@ function Success({
                         )}
                     </div>
 
+                    <p className="text-justify text-xs text-gray-700 mt-2 border border-gray-700 border-dashed -mx-2 sm:mx-0 p-2">
+                        Dear Donor,
+                        <br />
+                        thank you for your generous donation. Your small
+                        contribution can make a big difference. Your donated
+                        amount will be used for the welfare of underprivileged
+                        children, environmental conservation, and healthcare
+                        services. Thank you for your support ❤️.
+                        <br />
+                        <br />
+                        Regards,
+                        <br />
+                        Satyalok Team
+                    </p>
+
                     <div className="my-8">
                         <img
                             src={logo}
@@ -181,32 +157,47 @@ function Success({
                             </p>
                         </div>
                     </div>
-                </div>
 
-                <div className="mt-8 text-center print:hidden divide-x bg-black/90 py-2 rounded-full divide-gray-400 text-white flex text-xs md:text-sm z-20">
-                    <button
-                        className="px-5 flex flex-col md:flex-row md:gap-1.5 justify-center items-center text-center w-[33%]"
-                        onClick={() => window.print()}
-                    >
-                        <i className="fas fa-print"></i>
-                        <span>Print Receipt</span>
-                    </button>
+                    <div className="text-justify text-xs font-sans text-gray-500">
+                        <p className="mb-4">
+                            If you opted for a tax benefit, your certificate is
+                            sent to your email. Please check your inbox. In case
+                            you don&apos;t receive the certificate, please check
+                            your spam folder or contact us at{" "}
+                            <a
+                                href="mailto:info@satyalok.in"
+                                className="underline underline-offset-4"
+                            >
+                                info@satyalok.in
+                            </a>
+                        </p>
+                    </div>
 
-                    <a
-                        className="px-5 flex flex-col md:flex-row md:gap-1.5 justify-center items-center text-center w-[33%]"
-                        href="https://donate.satyalok.in"
-                    >
-                        <i className="fas fa-undo"></i>
-                        <span>Donate Again</span>
-                    </a>
+                    <div className="mt-8 text-center print:hidden divide-x bg-purple-800/90 py-2 rounded-full divide-gray-400 text-white flex text-xs md:text-sm z-20">
+                        <button
+                            className="px-5 flex flex-col md:flex-row md:gap-1.5 justify-center items-center text-center w-[33%]"
+                            onClick={() => window.print()}
+                        >
+                            <i className="fas fa-print"></i>
+                            <span>Print Receipt</span>
+                        </button>
 
-                    <a
-                        className="px-5 flex flex-col md:flex-row md:gap-1.5 justify-center items-center text-center w-[33%]"
-                        href="https://www.satyalok.in"
-                    >
-                        <i className="fas fa-home"></i>
-                        <span>Back Home</span>
-                    </a>
+                        <a
+                            className="px-5 flex flex-col md:flex-row md:gap-1.5 justify-center items-center text-center w-[33%]"
+                            href="https://donate.satyalok.in"
+                        >
+                            <i className="fas fa-undo"></i>
+                            <span>Donate Again</span>
+                        </a>
+
+                        <a
+                            className="px-5 flex flex-col md:flex-row md:gap-1.5 justify-center items-center text-center w-[33%]"
+                            href="https://www.satyalok.in"
+                        >
+                            <i className="fas fa-home"></i>
+                            <span>Back Home</span>
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
