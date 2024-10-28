@@ -33,9 +33,9 @@ function Payment() {
         const wakeUpBackend = async () => {
             try {
                 const res = await axios.get(`${BACKEND_URL}/`);
-                if (res.data.alive) {
+                if (res?.data?.alive) {
                     setServerStatus("alive");
-                    setServerVersion(res.data.commitVersion.slice(-3));
+                    setServerVersion(res?.data?.commitVersion?.slice(-3));
                 }
             } catch (error) {
                 console.error("Failed to wake up backend server:", error);

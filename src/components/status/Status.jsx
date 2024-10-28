@@ -50,7 +50,7 @@ function Status() {
     }
 
     return (
-        <div className="relative min-h-screen bg-purple-600 flex flex-col items-center justify-center p-6">
+        <div className="relative min-h-screen bg-gray-700 flex flex-col items-center justify-center md:p-6">
             {paymentData?.success === true && (
                 <Success {...paymentData.data} message={paymentData.message} />
             )}

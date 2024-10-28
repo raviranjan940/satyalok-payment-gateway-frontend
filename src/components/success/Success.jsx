@@ -1,5 +1,7 @@
 import PropTypes from "prop-types";
 import logo from "../../assets/logo.png";
+import paymentDoneAnimation from "../../assets/Successfully-Done.gif";
+import receiptBg from "../../assets/receipt-bg-2.gif";
 
 function Success({
     amount,
@@ -44,20 +46,42 @@ function Success({
                 {/* <i className="absolute -top- w-full -m-8 h-52 bg-gradient-to-b from-blue-500 via-black/40 to-transparent opacity-50 z-0"></i> */}
 
                 {/* Reflection effect sun */}
-                <i className="absolute bottom-8 right-0 -m-8 w-32 h-32 rounded-full bg-gradient-to-b from-yellow-500 via-yellow-500/40 to-transparent opacity-50 z-0"></i>
+                <i className="absolute bottom-40 right-0 -m-8 w-32 h-32 rounded-full bg-gradient-to-b from-yellow-500 via-yellow-500/40 to-transparent opacity-50 z-0"></i>
 
                 <div className="relative">
-                    <div className="text-center w-14 h-14 m-auto bg-green-500/10 rounded-full flex justify-center items-center">
-                        <i className="fas fa-check-circle text-3xl text-green-500"></i>
+                    <div className="relative flex justify-center items-center -mx-8 -mt-8 h-40 overflow-hidden bg-green-700">
+                        <img
+                            className="absolute overflow-clip w-full object-cover object-top max-h-40 z-0"
+                            src={receiptBg}
+                            alt=""
+                        />
+
+                        <div className="z-10 text-white">
+                            <h1 className="text-2xl font-extrabold font-sans text-center">
+                                <span className="mr-1 font-extrabold">INR</span>
+                                {formatAmount(amount / 100)}
+                            </h1>
+                            <p className="text-xl font-extrabold text-center">
+                                Donation Received
+                            </p>
+                        </div>
                     </div>
-                    <h1 className="text-xl font-semibold mt-4 text-center text-blue-900">
-                        Donation Received
-                    </h1>
-                    <p className="text-green-800 font-bold text-center mb-4 font-sans">
+
+                    {/* <div className="my-4 text-center w-14 h-14 m-auto bg-green-500/10 rounded-full flex justify-center items-center">
+                        <i className="fas fa-check-circle text-3xl text-green-500"></i>
+                    </div> */}
+
+                    <img
+                        className="max-w-32 m-auto -mb-10 -mt-4"
+                        src={paymentDoneAnimation}
+                        alt=""
+                    />
+
+                    <p className="font-bold text-center font-sans my-4 text-green-500">
                         {message}
                     </p>
 
-                    <div className="my-6">
+                    {/* <div className="my-6">
                         <p className="text-center text-lg font-sans opacity-80">
                             Total Payment
                         </p>
@@ -65,7 +89,7 @@ function Success({
                             <span className="mr-1 font-extrabold">INR</span>
                             {formatAmount(amount / 100)}
                         </h1>
-                    </div>
+                    </div> */}
 
                     <div className="text-justify text-xs font-sans text-black">
                         <p className="mb-4">
@@ -158,32 +182,32 @@ function Success({
                         </div>
                     </div>
                 </div>
-            </div>
 
-            <div className="mt-8 text-right print:hidden divide-x divide-gray-400 text-white flex text-xs md:text-sm">
-                <button
-                    className="px-5 flex flex-col md:flex-row md:gap-1.5 justify-center items-center text-center"
-                    onClick={() => window.print()}
-                >
-                    <i className="fas fa-print"></i>
-                    <span>Print Receipt</span>
-                </button>
+                <div className="mt-8 text-center print:hidden divide-x bg-black/90 py-2 rounded-full divide-gray-400 text-white flex text-xs md:text-sm z-20">
+                    <button
+                        className="px-5 flex flex-col md:flex-row md:gap-1.5 justify-center items-center text-center w-[33%]"
+                        onClick={() => window.print()}
+                    >
+                        <i className="fas fa-print"></i>
+                        <span>Print Receipt</span>
+                    </button>
 
-                <a
-                    className="px-5 flex flex-col md:flex-row md:gap-1.5 justify-center items-center text-center"
-                    href="https://donate.satyalok.in"
-                >
-                    <i className="fas fa-undo"></i>
-                    <span>Donate Again</span>
-                </a>
+                    <a
+                        className="px-5 flex flex-col md:flex-row md:gap-1.5 justify-center items-center text-center w-[33%]"
+                        href="https://donate.satyalok.in"
+                    >
+                        <i className="fas fa-undo"></i>
+                        <span>Donate Again</span>
+                    </a>
 
-                <a
-                    className="px-5 flex flex-col md:flex-row md:gap-1.5 justify-center items-center text-center"
-                    href="https://www.satyalok.in"
-                >
-                    <i className="fas fa-home"></i>
-                    <span>Home</span>
-                </a>
+                    <a
+                        className="px-5 flex flex-col md:flex-row md:gap-1.5 justify-center items-center text-center w-[33%]"
+                        href="https://www.satyalok.in"
+                    >
+                        <i className="fas fa-home"></i>
+                        <span>Back Home</span>
+                    </a>
+                </div>
             </div>
         </div>
     );
