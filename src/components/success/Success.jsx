@@ -47,7 +47,7 @@ function Success({
                 <i className="absolute bottom-8 right-0 -m-8 w-32 h-32 rounded-full bg-gradient-to-b from-yellow-500 via-yellow-500/40 to-transparent opacity-50 z-0"></i>
 
                 <img
-                    className="w-full max-w-52 object-center z-0 m-auto -mb-16 brightness-150"
+                    className="w-full max-w-52 object-center z-0 m-auto -mb-16"
                     src={receiptBg}
                     alt=""
                 />
