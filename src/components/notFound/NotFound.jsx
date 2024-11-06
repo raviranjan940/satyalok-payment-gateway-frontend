@@ -1,4 +1,3 @@
-import React from "react";
 import image from "../../assets/card1.png";
 
 function NotFound() {

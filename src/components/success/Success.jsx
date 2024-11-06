@@ -42,25 +42,25 @@ function Success({
 
     return (
         <div className="max-w-lg mx-auto flex flex-col justify-center items-center">
-            <div className="relative bg-white overflow-hidden drop-shadow-xl print:drop-shadow-none">
+            <div className="relative bg-white overflow-hidden drop-shadow-2xl print:drop-shadow-none rounded-lg">
                 {/* Reflection effect sun */}
                 <i className="absolute bottom-8 right-0 -m-8 w-32 h-32 rounded-full bg-gradient-to-b from-yellow-500 via-yellow-500/40 to-transparent opacity-50 z-0"></i>
 
                 <img
-                    className="w-full object-center z-0 m-auto"
+                    className="w-full max-w-52 object-center z-0 m-auto -mb-16 brightness-150"
                     src={receiptBg}
                     alt=""
                 />
 
                 <div className="relative p-8">
                     <div className="">
+                        <p className="text-xl font-semibold text-center text-green-500 mb-5">
+                            Donation Received
+                        </p>
                         <h1 className="text-2xl font-extrabold font-sans text-center text-green-500">
                             <span className="mr-1 font-extrabold">INR</span>
                             {formatAmount(amount / 100)}
                         </h1>
-                        <p className="text-xl font-semibold text-center text-green-500">
-                            Donation Received
-                        </p>
 
                         <p className="font-medium text-center font-sans">
                             {message}
