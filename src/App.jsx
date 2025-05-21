@@ -2,6 +2,7 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Payment from "./components/payment/Payment";
 import Status from "./components/status/Status";
 import NotFound from "./components/notFound/NotFound";
+import PaymentRedirects from "./components/payment-redirects/PaymentRedirects";
 
 function App() {
     return (
@@ -9,6 +10,7 @@ function App() {
             <Routes>
                 <Route path="/" element={<Payment />} />
                 <Route path="/status/:id" element={<Status />} />
+                <Route path="/payment-redirects/:id" element={<PaymentRedirects />} />
                 <Route path="*" element={<NotFound />} />
             </Routes>
         </Router>
